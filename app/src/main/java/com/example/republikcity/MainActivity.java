@@ -7,14 +7,18 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 public class MainActivity extends AppCompatActivity {
+    //Website url
+    private static String mUrl = "https://therepublikcity.com";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Load webView
         WebView myWebView = new WebView(this);
         setContentView(myWebView);
-        myWebView.loadUrl("https://therepublikcity.com");
+        myWebView.loadUrl(mUrl);
 
+        //Navigation in webView
         myWebView.setWebViewClient(new WebViewClient());
     }
 }
