@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Enabling JavaScript in webView
         webSettings.setJavaScriptEnabled(true);
-        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+        webSettings.setDomStorageEnabled(true);
 
         //Navigation in webView
         myWebView.setWebViewClient(new WebViewClient());
