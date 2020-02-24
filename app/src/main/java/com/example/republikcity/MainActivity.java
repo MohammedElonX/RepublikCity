@@ -45,7 +45,19 @@ public class MainActivity extends AppCompatActivity {
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
-                        myWebView.reload();
+                        //Checks for network connection
+                        ConnectivityManager cm
+                                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+                        boolean isConnected = activeNetwork != null &&
+                                activeNetwork.isConnectedOrConnecting();
+                        //Does not load url if no connection
+                        if(isConnected == false){
+                            mySwipeRefreshLayout.setRefreshing(false);
+                            Toast.makeText(MainActivity.this, "No Network Connection!", Toast.LENGTH_LONG).show();
+                        }else {
+                            myWebView.reload();
+                        }
                     }
                 }
         );
@@ -98,6 +110,8 @@ public class MainActivity extends AppCompatActivity {
         public void onPageFinished(WebView view, String url) {
             mySwipeRefreshLayout.setRefreshing(false);
         }
+
+
     }
 
 }
