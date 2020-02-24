@@ -1,10 +1,14 @@
 package com.example.republikcity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 public class splashActivity extends AppCompatActivity {
     private static int SPLASH_SCREEN_TIME_OUT=3500;
@@ -21,15 +25,34 @@ public class splashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i=new Intent(splashActivity.this,
-                        MainActivity.class);
-                //Intent is used to switch from one activity to another.
+                //Checks for network connection
+                ConnectivityManager cm
+                        = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+                boolean isConnected = activeNetwork != null &&
+                        activeNetwork.isConnectedOrConnecting();
+                //Does not load url if no connection
+                if(isConnected) {
+                    Intent i = new Intent(splashActivity.this,
+                            MainActivity.class);
+                    //Intent is used to switch from one activity to another.
 
-                startActivity(i);
-                //invoke the SecondActivity.
+                    startActivity(i);
+                    //invoke the SecondActivity.
 
-                finish();
-                //the current activity will get finished.
+                    finish();
+                    //the current activity will get finished.
+                } else {
+                    Intent i = new Intent(splashActivity.this,
+                            Wait.class);
+                    //Intent is used to switch from one activity to another.
+
+                    startActivity(i);
+                    //invoke the SecondActivity.
+
+                    finish();
+                    //the current activity will get finished.
+                }
             }
         }, SPLASH_SCREEN_TIME_OUT);
     }

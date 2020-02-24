@@ -12,6 +12,8 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".Wait">
+        </activity>
         <activity android:name=".MainActivity">
         </activity>
         <activity android:name=".splashActivity">
