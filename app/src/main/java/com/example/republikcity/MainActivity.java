@@ -1,6 +1,9 @@
 package com.example.republikcity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +13,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     //Website url
@@ -66,11 +70,24 @@ public class MainActivity extends AppCompatActivity {
             if (Uri.parse(url).getHost().contains("therepublikcity")) {
                 // This is my website, so do not override; let my WebView load the page
 
+                //Checks for network connection
+                ConnectivityManager cm
+                        = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+                boolean isConnected = activeNetwork != null &&
+                        activeNetwork.isConnectedOrConnecting();
+                //Does not load url if no connection
+                if(isConnected == false){
+                   Toast.makeText(MainActivity.this, "No Network Connection!", Toast.LENGTH_LONG).show();
+                   return true;
+                }
+                //Returns false if there's connection
                 return false;
             }
             // Otherwise, the link is not for a page on my site, so launch another Activity that handles URLs
             if(Uri.parse(url).getHost().contains("twitter") || Uri.parse(url).getHost().contains("facebook") ||
                     Uri.parse(url).getHost().contains("instagram") || Uri.parse(url).getHost().contains("pinterest")){
+                //Intent takes social media links to web Browser
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 startActivity(intent);
             }
