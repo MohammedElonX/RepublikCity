@@ -36,7 +36,7 @@ public class Wait extends AppCompatActivity {
                     startActivity(i);
                     finish();
                 }else {
-                    Toast.makeText(Wait.this, "No Connection Yet!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Wait.this, "No Connection!", Toast.LENGTH_LONG).show();
                 }
             }
         });

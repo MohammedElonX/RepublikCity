@@ -14,9 +14,11 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".Wait">
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+                  android:screenOrientation="locked">
         </activity>
-        <activity android:name=".splashActivity">
+        <activity android:name=".splashActivity"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
