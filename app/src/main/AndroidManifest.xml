@@ -15,7 +15,7 @@
         <activity android:name=".Wait">
         </activity>
         <activity android:name=".MainActivity"
-                  android:screenOrientation="locked">
+                  android:screenOrientation="portrait">
         </activity>
         <activity android:name=".splashActivity"
                   android:screenOrientation="portrait">

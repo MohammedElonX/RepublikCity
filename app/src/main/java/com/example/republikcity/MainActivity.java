@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
+    //For navigation in webview
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         myWebView = findViewById(R.id.webview);
